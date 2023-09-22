@@ -201,6 +201,12 @@ public interface CertificateController {
             @RequestBody ClientCertificateRequestDto request
     ) throws ValidationException, NotFoundException, CertificateException, IOException, NoSuchAlgorithmException, InvalidKeyException, NoSuchProviderException;
 
+    @Operation(
+            summary = "Get certificate chain"
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Certificate chain retrieved")
+    })
     @RequestMapping(
             path = {"/{uuid}/chain"},
             method = {RequestMethod.GET},
