@@ -2,14 +2,11 @@ package com.czertainly.api.model.core.location;
 
 import com.czertainly.api.model.client.attribute.ResponseAttributeDto;
 import com.czertainly.api.model.client.metadata.MetadataResponseDto;
-import com.czertainly.api.model.core.certificate.CertificateState;
-import com.czertainly.api.model.core.certificate.CertificateValidationStatus;
+import com.czertainly.api.model.core.certificate.CertificateStatus;
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.Data;
 
 import java.util.List;
 
-@Data
 public class CertificateInLocationDto {
 
     @Schema(
@@ -19,16 +16,10 @@ public class CertificateInLocationDto {
     private String certificateUuid;
 
     @Schema(
-            description = "State of the Certificate",
+            description = "Status of the Certificate",
             requiredMode = Schema.RequiredMode.REQUIRED
     )
-    private CertificateState state;
-
-    @Schema(
-            description = "Current validation status of the certificate",
-            requiredMode = Schema.RequiredMode.REQUIRED
-    )
-    private CertificateValidationStatus validationStatus;
+    private CertificateStatus status;
 
     @Schema(
             description = "Common Name of the Subject DN field of the Certificate",
@@ -63,4 +54,68 @@ public class CertificateInLocationDto {
             requiredMode = Schema.RequiredMode.NOT_REQUIRED
     )
     private boolean withKey;
+
+    public String getCertificateUuid() {
+        return certificateUuid;
+    }
+
+    public void setCertificateUuid(String certificateUuid) {
+        this.certificateUuid = certificateUuid;
+    }
+
+    public String getCommonName() {
+        return commonName;
+    }
+
+    public void setCommonName(String commonName) {
+        this.commonName = commonName;
+    }
+
+    public String getSerialNumber() {
+        return serialNumber;
+    }
+
+    public void setSerialNumber(String serialNumber) {
+        this.serialNumber = serialNumber;
+    }
+
+    public List<MetadataResponseDto> getMetadata() {
+        return metadata;
+    }
+
+    public void setMetadata(List<MetadataResponseDto> metadata) {
+        this.metadata = metadata;
+    }
+
+    public List<ResponseAttributeDto> getPushAttributes() {
+        return pushAttributes;
+    }
+
+    public void setPushAttributes(List<ResponseAttributeDto> pushAttributes) {
+        this.pushAttributes = pushAttributes;
+    }
+
+    public List<ResponseAttributeDto> getCsrAttributes() {
+        return csrAttributes;
+    }
+
+    public void setCsrAttributes(List<ResponseAttributeDto> csrAttributes) {
+        this.csrAttributes = csrAttributes;
+    }
+
+    public boolean isWithKey() {
+        return withKey;
+    }
+
+    public void setWithKey(boolean withKey) {
+        this.withKey = withKey;
+    }
+
+    public CertificateStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(CertificateStatus status) {
+        this.status = status;
+    }
 }

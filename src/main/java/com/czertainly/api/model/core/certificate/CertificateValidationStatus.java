@@ -11,12 +11,12 @@ import java.util.Arrays;
 
 @Schema(enumAsRef = true)
 public enum CertificateValidationStatus implements IPlatformEnum {
-    NOT_CHECKED("not_checked", "Not checked"),
+    SUCCESS("success", "Success"),
     FAILED("failed", "Failed"),
-    INACTIVE("inactive", "Inactive"),
-    INVALID("invalid", "Invalid"),
-    VALID("valid", "Valid"),
+    WARNING("warning", "Warning"),
     REVOKED("revoked", "Revoked"),
+    NOT_CHECKED("not_checked", "Not checked"),
+    INVALID("invalid", "Invalid"),
     EXPIRING("expiring", "Expiring"),
     EXPIRED("expired", "Expired");
 

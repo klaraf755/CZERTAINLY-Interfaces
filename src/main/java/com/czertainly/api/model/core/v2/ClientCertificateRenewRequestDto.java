@@ -17,8 +17,7 @@ public class ClientCertificateRenewRequestDto {
             description = "True to replace renewed certificate in the associated locations",
             defaultValue = "false"
     )
-    private boolean replaceInLocations;
-
+    public boolean replaceInLocations;
     @Schema(
             description = "Certificate sign request (PKCS#10) encoded as Base64 string. If not provided, Existing CSR will be used"
     )

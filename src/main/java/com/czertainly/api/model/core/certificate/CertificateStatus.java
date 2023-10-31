@@ -10,19 +10,19 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Arrays;
 
 @Schema(enumAsRef = true)
-public enum CertificateState implements IPlatformEnum {
-	REQUESTED("requested", "Requested"),
+public enum CertificateStatus implements IPlatformEnum {
+
+	UNKNOWN("unknown", "Unknown"),
+	NEW("new", "New"),
 	REJECTED("rejected", "Rejected"),
-	PENDING_APPROVAL("pending_approval", "Pending approval"),
-	PENDING_ISSUE("pending_issue", "Pending issue", "Issue action pending (CA approval)"),
-	PENDING_REVOKE("pending_revoke", "Pending revoke", "Revoke action pending (CA approval)"),
-	FAILED("failed", "Failed", "Issue action failed"),
-	ISSUED("issued", "Issued"),
+	VALID("valid", "Valid"),
+	INVALID("invalid", "Invalid"),
 	REVOKED("revoked", "Revoked"),
-	ARCHIVED("archived", "Archived"),
+	EXPIRING("expiring", "Expiring"),
+	EXPIRED("expired", "Expired"),
 	;
 
-	private static final CertificateState[] VALUES;
+	private static final CertificateStatus[] VALUES;
 
 	static {
 		VALUES = values();
@@ -32,11 +32,11 @@ public enum CertificateState implements IPlatformEnum {
 	private final String label;
 	private final String description;
 
-	CertificateState(String code, String label) {
+	CertificateStatus(String code, String label) {
 		this(code, label,null);
 	}
 
-	CertificateState(String code, String label, String description) {
+	CertificateStatus(String code, String label, String description) {
 		this.code = code;
 		this.label = label;
 		this.description = description;
@@ -59,11 +59,11 @@ public enum CertificateState implements IPlatformEnum {
 	}
 
 	@JsonCreator
-	public static CertificateState findByCode(String code) {
+	public static CertificateStatus findByCode(String code) {
 		return Arrays.stream(VALUES)
 				.filter(k -> k.code.equals(code))
 				.findFirst()
 				.orElseThrow(() ->
-						new ValidationException(ValidationError.create("Unknown certificate state {}", code)));
+						new ValidationException(ValidationError.create("Unknown certificate status {}", code)));
 	}
 }
