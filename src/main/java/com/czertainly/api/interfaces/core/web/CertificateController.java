@@ -219,7 +219,7 @@ public interface CertificateController {
             path = {"/{uuid}/chain/{certificateFormat}"},
             produces = {MediaType.APPLICATION_JSON_VALUE}
     )
-    CertificateChainDownloadResponseDto downloadCertificateChain(@Parameter(description = "Certificate UUID") @PathVariable String uuid, @Parameter(description = "Certificate format") @PathVariable CertificateFormat certificateFormat, @RequestParam(required = false) boolean withEndCertificate, @RequestParam CertificateFormatEncoding encoding) throws NotFoundException, CertificateException;
+    CertificateChainDownloadResponseDto downloadCertificateChain(@Parameter(description = "Certificate UUID") @PathVariable String uuid, @Parameter(description = "Certificate format") @PathVariable CertificateFormat certificateFormat, @RequestParam(required = false) boolean withEndCertificate, @RequestParam CertificateFormatEncoding encoding) throws NotFoundException, CertificateException, IOException;
 
     @Operation(summary = "List Certificates Approvals")
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "List of all approvals for the certificate")})
