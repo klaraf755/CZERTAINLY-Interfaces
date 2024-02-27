@@ -1,17 +1,33 @@
 package com.czertainly.api.model.core.signature;
 
+import com.czertainly.api.model.client.attribute.ResponseAttributeDto;
+import com.czertainly.api.model.common.NameAndUuidDto;
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Data;
 
-public class SignatureProfileDto {
+import java.util.ArrayList;
+import java.util.List;
 
-    @Schema(description = "UUID of the Signature Profile",
-            requiredMode = Schema.RequiredMode.REQUIRED)
-    private String uuid;
+@Data
+public class SignatureProfileDto extends NameAndUuidDto {
 
-    @Schema(description = "Name of the Signature Profile",
-            requiredMode = Schema.RequiredMode.REQUIRED)
-    private String name;
 
+    @Schema(description = "Signature Profile description")
     private String description;
+
+    @Schema(description = "Name of Signing Engine associated with Signature Profile")
+    private String signingEngineName;
+
+    @Schema(description = "UUID of Signing Engine associated with Signature Profile",
+            requiredMode = Schema.RequiredMode.REQUIRED)
+    private String signingEngineUuid;
+
+
+    @Schema(description = "List of Signature Profile attributes")
+    private List<ResponseAttributeDto> attributes = new ArrayList<>();
+
+    @Schema(description = "List of Custom Attributes")
+    private List<ResponseAttributeDto> customAttributes;
+
 
 }

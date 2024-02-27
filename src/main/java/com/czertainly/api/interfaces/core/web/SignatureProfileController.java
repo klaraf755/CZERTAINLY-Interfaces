@@ -45,7 +45,7 @@ import java.util.Optional;
 public interface SignatureProfileController {
 
     @Operation(summary = "List of available Signature Profiles")
-    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Singnature Profiles retrieved")})
+    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Signature Profiles retrieved")})
     @RequestMapping(path = "/signatureProfiles", method = RequestMethod.GET, produces = {"application/json"})
     List<SignatureProfileDto> listSignatureProfiles();
 
