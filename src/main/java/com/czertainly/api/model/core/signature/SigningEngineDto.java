@@ -9,25 +9,39 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-public class SigningEngineDto extends NameAndUuidDto {
+public class SigningEngineDto {
 
-
-    @Schema(description = "Signing Engine description")
-    private String description;
-
-    @Schema(description = "Name of Signing Engine associated with Signature Profile")
-    private String signingEngineName;
-
-    @Schema(description = "UUID of Signing Engine associated with Signature Profile",
+    @Schema(description = "Signing Engine name",
             requiredMode = Schema.RequiredMode.REQUIRED)
-    private String signingEngineUuid;
+    private String name;
 
+    @Schema(description = "Signing Engine UUID",
+            requiredMode = Schema.RequiredMode.REQUIRED)
+    private String uuid;
 
-    @Schema(description = "List of Signing Engine Profile attributes")
+    @Schema(description = "List of Signing Engine Attributes",
+            requiredMode = Schema.RequiredMode.REQUIRED)
     private List<ResponseAttributeDto> attributes = new ArrayList<>();
 
     @Schema(description = "List of Custom Attributes")
     private List<ResponseAttributeDto> customAttributes;
+
+    @Schema(description = "Status of Authority instance",
+            requiredMode = Schema.RequiredMode.REQUIRED)
+    private String status;
+
+    @Schema(description = "UUID of Signature provider",
+            requiredMode = Schema.RequiredMode.REQUIRED)
+    private String connectorUuid;
+
+    @Schema(description = "Name of Signature provider",
+            requiredMode = Schema.RequiredMode.REQUIRED)
+    private String connectorName;
+
+    @Schema(description = "Signing Engine Kind",
+            example = "Czertainly, SignServer, etc.",
+            requiredMode = Schema.RequiredMode.REQUIRED)
+    private String kind;
 
 
 }
