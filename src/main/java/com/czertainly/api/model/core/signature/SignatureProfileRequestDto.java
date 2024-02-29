@@ -19,9 +19,6 @@ public class SignatureProfileRequestDto {
     @Schema(description = "Signature Profile description")
     private String description;
 
-    @Schema(description = "Name of Signing Engine associated with Signature Profile")
-    private String signingEngineName;
-
     @Schema(description = "UUID of Signing Engine associated with Signature Profile",
             requiredMode = Schema.RequiredMode.REQUIRED)
     private String signingEngineUuid;

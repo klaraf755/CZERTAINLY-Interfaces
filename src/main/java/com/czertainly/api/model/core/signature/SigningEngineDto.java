@@ -26,7 +26,7 @@ public class SigningEngineDto {
     @Schema(description = "List of Custom Attributes")
     private List<ResponseAttributeDto> customAttributes;
 
-    @Schema(description = "Status of Authority instance",
+    @Schema(description = "Status of Signing Engine",
             requiredMode = Schema.RequiredMode.REQUIRED)
     private String status;
 

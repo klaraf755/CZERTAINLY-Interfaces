@@ -3,7 +3,7 @@ package com.czertainly.api.interfaces.core.web;
 
 import com.czertainly.api.model.common.AuthenticationServiceExceptionDto;
 import com.czertainly.api.model.common.ErrorMessageDto;
-import com.czertainly.api.model.core.signature.SignedDataDto;
+import com.czertainly.api.model.core.signature.SignatureDto;
 import com.czertainly.api.model.core.signature.SignedDataRequestDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -47,10 +47,12 @@ import org.springframework.web.bind.annotation.*;
         })
 public interface SignatureDataInventoryController {
 
+    // TODO list, edit (description, owner
+
     @Operation(summary = "Upload Signed Data or Data waiting to be signed")
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Data uploaded")})
     @RequestMapping(produces = {"application/json"}, method = RequestMethod.POST)
-    SignedDataDto uploadSignedData(@RequestBody SignedDataRequestDto signedDataRequestDto);
+    SignatureDto uploadSignedData(@RequestBody SignedDataRequestDto signedDataRequestDto);
 
     @Operation(summary = "Delete Signed Data or Data waiting to be signed")
     @ApiResponses(value = {@ApiResponse(responseCode = "204", description = "Data deleted")})

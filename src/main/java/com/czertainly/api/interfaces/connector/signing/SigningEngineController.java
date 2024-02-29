@@ -4,6 +4,7 @@ import com.czertainly.api.exception.AlreadyExistException;
 import com.czertainly.api.exception.NotFoundException;
 import com.czertainly.api.exception.ValidationException;
 import com.czertainly.api.model.client.attribute.RequestAttributeDto;
+import com.czertainly.api.model.client.attribute.ResponseAttributeDto;
 import com.czertainly.api.model.common.ErrorMessageDto;
 import com.czertainly.api.model.common.attribute.v2.BaseAttribute;
 import com.czertainly.api.model.connector.authority.*;
@@ -62,7 +63,7 @@ public interface SigningEngineController {
 
     @Operation(summary = "Update Signing Engine")
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Signing Engine updated")})
-    @RequestMapping(path = "/{uuid}", method = RequestMethod.POST, consumes = {"application/json"}, produces = {"application/json"})
+    @RequestMapping(path = "/{uuid}", method = RequestMethod.PUT, consumes = {"application/json"}, produces = {"application/json"})
     SigningEngineDto updateSigningEngine(@Parameter(description = "Signing Engine UUID") @PathVariable String uuid, @RequestBody SigningEngineUpdateDto request) throws NotFoundException;
 
     @Operation(summary = "Remove Signing Engine")

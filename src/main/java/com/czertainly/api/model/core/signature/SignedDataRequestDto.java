@@ -15,10 +15,10 @@ public class SignedDataRequestDto {
 
 
     @Schema(description = "Signed Data or data waiting to be signed")
-    private InputStream data;
+    private byte[] data;
 
     @Schema(description = "Description of Signed Data or data waiting to be signed")
-    private InputStream dataDescription;
+    private String dataDescription;
 
     @Schema(description = "UUID of Signature Profile used to sign the data",
         requiredMode = Schema.RequiredMode.REQUIRED)

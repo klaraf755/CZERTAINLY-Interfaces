@@ -4,10 +4,10 @@ package com.czertainly.api.interfaces.connector.signing;
 import com.czertainly.api.model.client.attribute.RequestAttributeDto;
 import com.czertainly.api.model.common.ErrorMessageDto;
 import com.czertainly.api.model.common.attribute.v2.BaseAttribute;
+import com.czertainly.api.model.connector.signing.DataFormatValidationDto;
 import com.czertainly.api.model.connector.signing.SignRequestDto;
-import com.czertainly.api.model.connector.signing.SignatureValidationRequestDto;
-import com.czertainly.api.model.core.signature.SignedDataDto;
-import com.czertainly.api.model.core.signature.SigningEngineDto;
+import com.czertainly.api.model.connector.signing.SignResultDto;
+import com.czertainly.api.model.connector.signing.SignatureVerificationRequestDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -47,7 +47,7 @@ public interface SignatureController {
     @Operation(summary = "Sign Data")
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Data Signed")})
     @RequestMapping(method = RequestMethod.POST, consumes = {"application/json"} ,produces = {"application/json"})
-    SignedDataDto sign(@RequestBody SignRequestDto signRequestDto);
+    SignResultDto sign(@RequestBody SignRequestDto signRequestDto);
 
     @Operation(summary = "List Signature Attributes")
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "List of Signature Attributes")})
@@ -59,9 +59,14 @@ public interface SignatureController {
     @RequestMapping(method = RequestMethod.POST,consumes = {"application/json"}, produces = {"application/json"})
     void validateSignatureAttributes(@RequestBody List<RequestAttributeDto> attributes);
 
-    @Operation(summary = "Validate Signature of Signed Data")
-    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Signature is valid")})
+    @Operation(summary = "Verify Signature of Signed Data")
+    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Signature has been verified")})
     @RequestMapping(method = RequestMethod.POST, consumes = {"application/json"} ,produces = {"application/json"})
-    void validateSignature(@RequestBody SignatureValidationRequestDto signatureValidationRequestDto);
+    void verifySignature(@RequestBody SignatureVerificationRequestDto signatureVerificationRequestDto);
+
+    @Operation(summary = "Validate format of data to sign")
+    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Format is valid")})
+    @RequestMapping(method = RequestMethod.POST, consumes = {"application/json"} ,produces = {"application/json"})
+    void validateDataFormat(@RequestBody DataFormatValidationDto dataFormatValidationDto);
 
 }

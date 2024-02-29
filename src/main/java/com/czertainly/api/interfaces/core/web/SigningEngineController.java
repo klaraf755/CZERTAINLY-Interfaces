@@ -82,10 +82,6 @@ public interface SigningEngineController {
     @RequestMapping(path = "/{signingEngineUuid}", method = RequestMethod.DELETE)
     void deleteSigningEngine(@Parameter(description = "Signing Engine UUID") @PathVariable String signingEngineUuid);
 
-    @Operation(summary = "List Signing Engine attributes")
-    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Signing Engine attributes retrieved")})
-    @RequestMapping(path = "/{signingEngineUuid}/attributes", method = RequestMethod.GET, produces = {"application/json"})
-    List<ResponseAttributeDto> listSigningEngineAttributes(@Parameter(description = "Signing Engine UUID") @PathVariable String signingEngineUuid);
 
 }
 

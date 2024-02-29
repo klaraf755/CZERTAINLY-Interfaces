@@ -1,5 +1,8 @@
 package com.czertainly.api.interfaces.core.web;
 
+import com.czertainly.api.exception.NotFoundException;
+import com.czertainly.api.exception.ValidationException;
+import com.czertainly.api.model.client.attribute.RequestAttributeDto;
 import com.czertainly.api.model.client.attribute.ResponseAttributeDto;
 import com.czertainly.api.model.common.AuthenticationServiceExceptionDto;
 import com.czertainly.api.model.common.attribute.v2.BaseAttribute;
@@ -76,5 +79,10 @@ public interface SignatureProfileController {
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Signature Profile attributes retrieved")})
     @RequestMapping(path = "/signatureProfiles/{signatureProfileUuid}/attributes", method = RequestMethod.GET, produces = {"application/json"})
     List<ResponseAttributeDto> listSignatureProfileAttributes(@Parameter(description = "Signature Profile UUID") @PathVariable String signatureProfileUuid);
+
+    @Operation(summary = "Validate Signature Profile attributes")
+    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Signature Profile Attributes information validated")})
+    @RequestMapping(path = "/{uuid}/signatureProfile/attributes/validate", method = RequestMethod.POST, consumes = {"application/json"})
+    void validateSignatureProfileAttributes(@Parameter(description = "Signing Engine UUID") @PathVariable String uuid, @RequestBody List<RequestAttributeDto> attributes) throws ValidationException, NotFoundException;
 
 }
