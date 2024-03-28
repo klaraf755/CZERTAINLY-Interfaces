@@ -23,11 +23,26 @@ public class SignatureProfileRequestDto {
             requiredMode = Schema.RequiredMode.REQUIRED)
     private String signingEngineUuid;
 
+    @Schema(description = "Format of signature")
+    private SignatureFormat signatureFormat;
+
+    @Schema(description = "Level of signature")
+    private SignatureLevel signatureLevel;
+
+    @Schema(description = "Signature Algorithm used to sign data")
+    private SignatureAlgorithm signatureAlgorithm;
+
+    @Schema(description = "Packaging option")
+    private PackagingOption packagingOption;
+
     @Schema(description = "List of Signature Profile attributes")
     private List<ResponseAttributeDto> attributes;
 
     @Schema(description = "List of Custom Attributes")
     private List<ResponseAttributeDto> customAttributes;
+
+    @Schema(description = "Signed data will be saved")
+    boolean saveData;
 
 
 

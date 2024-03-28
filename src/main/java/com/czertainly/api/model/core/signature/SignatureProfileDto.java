@@ -6,7 +6,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
@@ -21,6 +20,17 @@ public class SignatureProfileDto extends NameAndUuidDto {
             requiredMode = Schema.RequiredMode.REQUIRED)
     private String signingEngineUuid;
 
+    @Schema(description = "Format of signature")
+    private SignatureFormat signatureFormat;
+
+    @Schema(description = "Level of signature")
+    private SignatureLevel signatureLevel;
+
+    @Schema(description = "Signature Algorithm used to sign data")
+    private SignatureAlgorithm signatureAlgorithm;
+
+    @Schema(description = "Packaging option")
+    private PackagingOption packagingOption;
 
     @Schema(description = "List of Signature Profile attributes")
     private List<ResponseAttributeDto> attributes;
@@ -28,7 +38,7 @@ public class SignatureProfileDto extends NameAndUuidDto {
     @Schema(description = "List of Custom Attributes")
     private List<ResponseAttributeDto> customAttributes;
 
-
-
+    @Schema(description = "Signed data will be saved")
+    boolean saveData;
 
 }

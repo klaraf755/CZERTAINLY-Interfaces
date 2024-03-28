@@ -14,7 +14,8 @@ import java.util.List;
 public class SignedDataRequestDto {
 
 
-    @Schema(description = "Signed Data or data waiting to be signed")
+    @Schema(description = "Signed Data or data waiting to be signed",
+    requiredMode = Schema.RequiredMode.REQUIRED)
     private byte[] data;
 
     @Schema(description = "Description of Signed Data or data waiting to be signed")
@@ -24,16 +25,16 @@ public class SignedDataRequestDto {
         requiredMode = Schema.RequiredMode.REQUIRED)
     private String signatureProfileUuid;
 
-    @Schema(description = "Owner of the signed data",
+    @Schema(description = "Creator of the signed data",
             requiredMode = Schema.RequiredMode.REQUIRED)
-    private UserDto owner;
+    private UserDto creator;
 
     @Schema(description = "Group assigned to the signed data")
     private GroupDto group;
 
-    @Schema(description = "Indicator whether data has already been signed",
+    @Schema(description = "Status of the signature of data",
             requiredMode = Schema.RequiredMode.REQUIRED)
-    private boolean signed;
+    private SignatureStatus status;
 
     @Schema(description = "Date when the data has been signed")
     private Date signatureDate;

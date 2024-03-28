@@ -1,9 +1,12 @@
 package com.czertainly.api.interfaces.core.web;
 
 
+import com.czertainly.api.model.client.signing.SignatureDataDto;
 import com.czertainly.api.model.common.AuthenticationServiceExceptionDto;
 import com.czertainly.api.model.common.ErrorMessageDto;
+import com.czertainly.api.model.core.signature.SignatureDetailDto;
 import com.czertainly.api.model.core.signature.SignatureDto;
+import com.czertainly.api.model.core.signature.SignatureEventHistoryDto;
 import com.czertainly.api.model.core.signature.SignedDataRequestDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -12,11 +15,14 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/v1/signedData")
-@Tag(name = "Signed Data Inventory Management", description = "Signed Data Inventory Management API")
+@Tag(name = "Signed Data Inventory Management", description = "Signature Inventory Management API")
 @ApiResponses(
         value = {
                 @ApiResponse(
@@ -47,17 +53,35 @@ import org.springframework.web.bind.annotation.*;
         })
 public interface SignatureDataInventoryController {
 
-    // TODO list, edit (description, owner
-
     @Operation(summary = "Upload Signed Data or Data waiting to be signed")
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Data uploaded")})
     @RequestMapping(produces = {"application/json"}, method = RequestMethod.POST)
-    SignatureDto uploadSignedData(@RequestBody SignedDataRequestDto signedDataRequestDto);
+    SignatureDetailDto uploadSignedData(@RequestBody SignedDataRequestDto signedDataRequestDto);
 
     @Operation(summary = "Delete Signed Data or Data waiting to be signed")
     @ApiResponses(value = {@ApiResponse(responseCode = "204", description = "Data deleted")})
     @RequestMapping(path = "/uuid", produces = {"application/json"}, method = RequestMethod.DELETE)
     void deleteSignedData(@Parameter(description = "Signed Data UUID") @PathVariable String uuid);
+
+    @Operation(summary = "List all Signatures")
+    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "List of Signatures retrieved")})
+    @RequestMapping(produces = {"application/json"}, method = RequestMethod.GET)
+    List<SignatureDto> listSignatures();
+
+    @Operation(summary = "Edit Signature")
+    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Signature updated")})
+    @RequestMapping(path = "/uuid", produces = {"application/json"}, method = RequestMethod.PUT)
+    SignatureDetailDto updateSignature(@Parameter(description = "Signature UUID") @PathVariable String uuid, @RequestBody UpdateSignatureRequestDto request);
+
+    @Operation(summary = "Download Signed Data")
+    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Signed Data retrieved")})
+    @RequestMapping(path = "/uuid", produces = {"application/json"}, method = RequestMethod.GET)
+    List<SignatureDataDto> downloadSignedData(@Parameter(description = "Signature UUID") @PathVariable String uuid);
+
+    @Operation(summary = "Get Signature event history")
+    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Signature event history retrieved")})
+    @GetMapping(path = "/{uuid}/history", produces = {MediaType.APPLICATION_JSON_VALUE})
+    List<SignatureEventHistoryDto> getSignatureEventHistory(@Parameter(description = "Signature UUID") @PathVariable String uuid);
 
 
 }
