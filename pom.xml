@@ -11,7 +11,7 @@
     </parent>
 
     <artifactId>interfaces</artifactId>
-    <version>2.11.1-SNAPSHOT</version>
+    <version>2.12.1-SNAPSHOT</version>
     <name>CZERTAINLY-Interfaces</name>
     <packaging>jar</packaging>
 
@@ -56,6 +56,10 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
