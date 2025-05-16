@@ -18,6 +18,7 @@ public enum KeyAlgorithm implements IPlatformEnum {
     MLDSA("ML-DSA", "ML-DSA", "Post-quantum Module-Lattice-Based digital signature algorithm standardized by NIST, also known as CRYSTALS-Dilithium"),
     SLHDSA("SLH-DSA", "SLH-DSA", "Post-quantum stateless hash-based digital signature scheme standardized by NIST, also known as SPHINCS+"),
     MLKEM("ML-KEM", "ML-KEM", "Post-quantum Module-Lattice-Based Key-Encapsulation mechanism and the primary KEM standardized by NIST, also known as CRYSTALS-Kyber"),
+    HQC("HQC","HQC","Post-quantum code-based KEM and the secondary KEM standardized by NIST"),
     @Deprecated DILITHIUM("CRYSTALS-Dilithium", "CRYSTALS-Dilithium", "Post-quantum lattice-based signature scheme"),
     @Deprecated SPHINCSPLUS("SPHINCS+", "SPHINCS+", "Post-quantum stateless hash-based signature scheme"),
     UNKNOWN("Unknown", "Unknown", "Key algorithm not recognized");
