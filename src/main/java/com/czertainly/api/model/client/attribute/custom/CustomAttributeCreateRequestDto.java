@@ -105,7 +105,7 @@ public class CustomAttributeCreateRequestDto {
     @Schema(
             description = "Predefined content for the attribute if needed. The content of the Attribute must satisfy the type"
     )
-    private List<BaseAttributeContent> content;
+    private List<BaseAttributeContent<?>> content;
 
     /**
      * List of resources to be associated to the attribute

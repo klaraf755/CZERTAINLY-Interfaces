@@ -93,13 +93,13 @@ public class EntityInstanceApiClient extends BaseApiClient {
     }
 
 
-    public List<BaseAttribute> listLocationAttributes(ConnectorDto connector, String entityUuid) throws ConnectorException {
+    public List<BaseAttribute<?>> listLocationAttributes(ConnectorDto connector, String entityUuid) throws ConnectorException {
         WebClient.RequestBodyUriSpec request = prepareRequest(HttpMethod.GET, connector, true);
 
         return processRequest(r -> r
                 .uri(connector.getUrl() + ENTITY_INSTANCE_LOCATION_ATTRS_CONTEXT, entityUuid)
                 .retrieve()
-                .toEntityList(BaseAttribute.class)
+                .toEntityList(new ParameterizedTypeReference<BaseAttribute<?>>() {})
                 .block().getBody(),
                 request,
                 connector);

@@ -39,13 +39,13 @@ public class CertificateApiClient extends BaseApiClient {
         this.defaultTrustManagers = defaultTrustManagers;
     }
 
-    public List<BaseAttribute> listIssueCertificateAttributes(ConnectorDto connector, String authorityUuid) throws ConnectorException {
+    public List<BaseAttribute<?>> listIssueCertificateAttributes(ConnectorDto connector, String authorityUuid) throws ConnectorException {
         WebClient.RequestBodyUriSpec request = prepareRequest(HttpMethod.GET, connector, true);
 
         return processRequest(r -> r
                 .uri(connector.getUrl() + CERTIFICATE_ISSUE_ATTRIBUTES_CONTEXT, authorityUuid)
                 .retrieve()
-                .toEntityList(BaseAttribute.class)
+                .toEntityList(new ParameterizedTypeReference<BaseAttribute<?>>() {})
                 .block().getBody(),
                 request,
                 connector);
@@ -90,13 +90,13 @@ public class CertificateApiClient extends BaseApiClient {
                 connector);
     }
 
-    public List<BaseAttribute> listRevokeCertificateAttributes(ConnectorDto connector, String authorityUuid) throws ConnectorException {
+    public List<BaseAttribute<?>> listRevokeCertificateAttributes(ConnectorDto connector, String authorityUuid) throws ConnectorException {
         WebClient.RequestBodyUriSpec request = prepareRequest(HttpMethod.GET, connector, true);
 
         return processRequest(r -> r
                 .uri(connector.getUrl() + CERTIFICATE_REVOKE_ATTRIBUTES_CONTEXT, authorityUuid)
                 .retrieve()
-                .toEntityList(BaseAttribute.class)
+                .toEntityList(new ParameterizedTypeReference<BaseAttribute<?>>() {})
                 .block().getBody(),
                 request,
                 connector);

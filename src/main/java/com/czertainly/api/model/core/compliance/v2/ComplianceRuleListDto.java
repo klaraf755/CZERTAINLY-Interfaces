@@ -43,7 +43,7 @@ public class ComplianceRuleListDto {
     private String format;
 
     @Schema(description = "Attributes of the rule", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-    private List<BaseAttribute> attributes;
+    private List<BaseAttribute<?>> attributes;
 
     @Schema(description = "List of the compliance internal rule condition items", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
     private List<ConditionItemDto> conditionItems;

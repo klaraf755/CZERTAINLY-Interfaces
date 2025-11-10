@@ -36,13 +36,13 @@ public class AttributeApiClient extends BaseApiClient {
         this.defaultTrustManagers = defaultTrustManagers;
     }
 
-    public List<BaseAttribute> listAttributeDefinitions(ConnectorDto connector, FunctionGroupCode functionGroupCode, String kind) throws ConnectorException {
+    public List<BaseAttribute<?>> listAttributeDefinitions(ConnectorDto connector, FunctionGroupCode functionGroupCode, String kind) throws ConnectorException {
         WebClient.RequestBodyUriSpec request = prepareRequest(HttpMethod.GET, connector, false);
 
         return processRequest(r -> r
                 .uri(connector.getUrl() + ATTRIBUTE_BASE_CONTEXT, functionGroupCode.getCode(), kind)
                 .retrieve()
-                .toEntityList(BaseAttribute.class)
+                .toEntityList(new ParameterizedTypeReference<BaseAttribute<?>>() {})
                 .block().getBody(),
                 request,
                 connector);

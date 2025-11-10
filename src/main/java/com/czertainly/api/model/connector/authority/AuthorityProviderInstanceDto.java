@@ -12,14 +12,14 @@ public class AuthorityProviderInstanceDto extends NameAndUuidDto {
 
     @Schema(description = "List of Authority instance Attributes",
             requiredMode = Schema.RequiredMode.REQUIRED)
-    private List<BaseAttribute> attributes;
+    private List<BaseAttribute<?>> attributes;
 
 
-    public List<BaseAttribute> getAttributes() {
+    public List<BaseAttribute<?>> getAttributes() {
         return attributes;
     }
 
-    public void setAttributes(List<BaseAttribute> attributes) {
+    public void setAttributes(List<BaseAttribute<?>> attributes) {
         this.attributes = attributes;
     }
 

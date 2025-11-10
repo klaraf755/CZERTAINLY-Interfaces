@@ -23,7 +23,7 @@ import java.util.List;
         description = "Custom attribute allows to store and transfer dynamic data. Its content can be edited and send in requests to store.",
         type = "object"
 )
-public class CustomAttribute extends BaseAttribute<List<BaseAttributeContent>> {
+public class CustomAttribute extends BaseAttribute<List<BaseAttributeContent<?>>> {
 
     /**
      * Content of the Attribute
@@ -31,7 +31,7 @@ public class CustomAttribute extends BaseAttribute<List<BaseAttributeContent>> {
     @Schema(
             description = "Content of the Attribute"
     )
-    private List<BaseAttributeContent> content;
+    private List<BaseAttributeContent<?>> content;
 
     /**
      * Type of the Attribute content

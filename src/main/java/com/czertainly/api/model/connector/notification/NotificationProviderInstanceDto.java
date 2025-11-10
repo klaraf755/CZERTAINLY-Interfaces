@@ -16,7 +16,7 @@ public class NotificationProviderInstanceDto extends NameAndUuidDto {
 
     @Schema(description = "List of Notification instance Attributes",
             requiredMode = Schema.RequiredMode.REQUIRED)
-    private List<BaseAttribute> attributes;
+    private List<BaseAttribute<?>> attributes;
 
 
     @Override

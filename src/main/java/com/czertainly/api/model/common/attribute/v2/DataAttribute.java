@@ -26,7 +26,7 @@ import java.util.List;
         description = "Data attribute allows to store and transfer dynamic data. Its content can be edited and send in requests to store.",
         type = "object"
 )
-public class DataAttribute extends BaseAttribute<List<BaseAttributeContent>> {
+public class DataAttribute extends BaseAttribute<List<BaseAttributeContent<?>>> {
 
     /**
      * Content of the Attribute
@@ -39,7 +39,7 @@ public class DataAttribute extends BaseAttribute<List<BaseAttributeContent>> {
                     description = "Content of the Attribute"
             )
     )
-    private List<BaseAttributeContent> content;
+    private List<BaseAttributeContent<?>> content;
 
     /**
      * Type of the Attribute content

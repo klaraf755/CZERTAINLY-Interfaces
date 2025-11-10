@@ -172,7 +172,7 @@ public interface EntityInstanceController extends AuthProtectedController {
             path = "/{entityUuid}/attributes/location",
             produces = {"application/json"}
     )
-    List<BaseAttribute> listLocationAttributes(
+    List<BaseAttribute<?>> listLocationAttributes(
             @Parameter(description = "Entity instance UUID") @PathVariable String entityUuid
     ) throws ConnectorException, NotFoundException;
 

@@ -158,7 +158,7 @@ public interface CertificateController extends AuthProtectedController {
     @Operation(summary = "Get CSR Generation Attributes")
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "CSR Generation attributes retrieved")})
     @GetMapping(path = "/csr/attributes", produces = {MediaType.APPLICATION_JSON_VALUE})
-    List<BaseAttribute> getCsrGenerationAttributes();
+    List<BaseAttribute<?>> getCsrGenerationAttributes();
 
     @Operation(summary = "Get Certificate Content")
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Certificate content retrieved"),

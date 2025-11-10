@@ -27,7 +27,7 @@ public class ComplianceRulesResponseDto {
     private CertificateType certificateType;
 
     @Schema(description = "Rule attributes")
-    private List<BaseAttribute> attributes;
+    private List<BaseAttribute<?>> attributes;
 
     @Schema(description = "Description of the rule", examples = {"Sample rule description"})
     private String description;
@@ -50,11 +50,11 @@ public class ComplianceRulesResponseDto {
         this.name = name;
     }
 
-    public List<BaseAttribute> getAttributes() {
+    public List<BaseAttribute<?>> getAttributes() {
         return attributes;
     }
 
-    public void setAttributes(List<BaseAttribute> attributes) {
+    public void setAttributes(List<BaseAttribute<?>> attributes) {
         this.attributes = attributes;
     }
 

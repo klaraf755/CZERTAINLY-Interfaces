@@ -112,13 +112,13 @@ public class TokenInstanceApiClient extends BaseApiClient {
                 connector);
     }
 
-    public List<BaseAttribute> listTokenProfileAttributes(ConnectorDto connector, String uuid) throws ConnectorException {
+    public List<BaseAttribute<?>> listTokenProfileAttributes(ConnectorDto connector, String uuid) throws ConnectorException {
         WebClient.RequestBodyUriSpec request = prepareRequest(HttpMethod.GET, connector, true);
 
         return processRequest(r -> r
                 .uri(connector.getUrl() + TOKEN_INSTANCE_PROFILE_ATTRS_CONTEXT, uuid)
                 .retrieve()
-                .toEntityList(BaseAttribute.class)
+                .toEntityList(new ParameterizedTypeReference<BaseAttribute<?>>() {})
                 .block().getBody(),
                 request,
                 connector);

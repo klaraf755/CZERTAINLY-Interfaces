@@ -37,13 +37,13 @@ public class KeyManagementApiClient extends BaseApiClient {
         this.defaultTrustManagers = defaultTrustManagers;
     }
 
-    public List<BaseAttribute> listCreateSecretKeyAttributes(ConnectorDto connector, String uuid) throws ConnectorException {
+    public List<BaseAttribute<?>> listCreateSecretKeyAttributes(ConnectorDto connector, String uuid) throws ConnectorException {
         WebClient.RequestBodyUriSpec request = prepareRequest(HttpMethod.GET, connector, true);
 
         return processRequest(r -> r
                 .uri(connector.getUrl() + KEY_CREATE_SECRET_KEY_ATTRIBUTES_CONTEXT, uuid)
                 .retrieve()
-                .toEntityList(BaseAttribute.class)
+                .toEntityList(new ParameterizedTypeReference<BaseAttribute<?>>() {})
                 .block().getBody(),
                 request,
                 connector);
@@ -75,13 +75,13 @@ public class KeyManagementApiClient extends BaseApiClient {
                 connector);
     }
 
-    public List<BaseAttribute> listCreateKeyPairAttributes(ConnectorDto connector, String uuid) throws ConnectorException {
+    public List<BaseAttribute<?>> listCreateKeyPairAttributes(ConnectorDto connector, String uuid) throws ConnectorException {
         WebClient.RequestBodyUriSpec request = prepareRequest(HttpMethod.GET, connector, true);
 
         return processRequest(r -> r
                         .uri(connector.getUrl() + KEY_CREATE_KEY_PAIR_ATTRIBUTES_CONTEXT, uuid)
                         .retrieve()
-                        .toEntityList(BaseAttribute.class)
+                        .toEntityList(new ParameterizedTypeReference<BaseAttribute<?>>() {})
                         .block().getBody(),
                 request,
                 connector);

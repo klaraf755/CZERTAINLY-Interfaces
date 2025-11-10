@@ -41,5 +41,5 @@ public class ComplianceRuleResponseDto {
     private String format;
 
     @Schema(description = "Rule attributes", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-    private List<BaseAttribute> attributes = new ArrayList<>();
+    private List<BaseAttribute<?>> attributes = new ArrayList<>();
 }

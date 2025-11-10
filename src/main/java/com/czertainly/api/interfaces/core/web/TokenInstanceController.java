@@ -206,7 +206,7 @@ public interface TokenInstanceController extends AuthProtectedController {
             path = "/{uuid}/tokenProfiles/attributes",
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    List<BaseAttribute> listTokenProfileAttributes(
+    List<BaseAttribute<?>> listTokenProfileAttributes(
             @Parameter(description = "Token instance UUID") @PathVariable String uuid
     ) throws ConnectorException, NotFoundException;
 

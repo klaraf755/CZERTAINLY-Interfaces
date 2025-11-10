@@ -137,8 +137,8 @@ public class V2AttributeMigrationUtils {
         return AttributeContentType.fromCode(type.getCode());
     }
 
-    private static List<BaseAttributeContent> getAttributeContent(AttributeType attributeType, Object oldContentData) {
-        List<BaseAttributeContent> attributeContents = new ArrayList<>();
+    private static List<BaseAttributeContent<?>> getAttributeContent(AttributeType attributeType, Object oldContentData) {
+        List<BaseAttributeContent<?>> attributeContents = new ArrayList<>();
         List<com.czertainly.api.model.common.attribute.v1.content.BaseAttributeContent> oldContentListItems = new ArrayList<>();
         if (oldContentData == null) {
             return null;
@@ -336,19 +336,15 @@ public class V2AttributeMigrationUtils {
         }
     }
 
-    private static List<BaseAttributeContent> getMetadataAttributeValue(Object value) {
-        if (value instanceof String) {
-            String metadataValue = (String) value;
+    private static List<BaseAttributeContent<?>> getMetadataAttributeValue(Object value) {
+        if (value instanceof String metadataValue) {
             return List.of(new StringAttributeContent(metadataValue, metadataValue));
-        } else if (value instanceof Integer) {
-            Integer metadataValue = (Integer) value;
+        } else if (value instanceof Integer metadataValue) {
             return List.of(new IntegerAttributeContent(metadataValue.toString(), metadataValue));
-        } else if (value instanceof Float) {
-            Float metadataValue = (Float) value;
+        } else if (value instanceof Float metadataValue) {
             return List.of(new FloatAttributeContent(metadataValue.toString(), metadataValue));
-        } else if (value instanceof Boolean) {
-            Boolean metadataValue = (Boolean) value;
-            return List.of(new BooleanAttributeContent(metadataValue ? "Yes" : "No", metadataValue));
+        } else if (value instanceof Boolean metadataValue) {
+            return List.of(new BooleanAttributeContent(metadataValue == Boolean.TRUE ? "Yes" : "No", metadataValue));
         } else {
             return List.of(new ObjectAttributeContent(value));
         }

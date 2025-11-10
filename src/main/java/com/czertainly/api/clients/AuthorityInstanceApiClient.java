@@ -101,13 +101,13 @@ public class AuthorityInstanceApiClient extends BaseApiClient {
     }
 
 
-    public List<BaseAttribute> listRAProfileAttributes(ConnectorDto connector, String uuid) throws ConnectorException {
+    public List<BaseAttribute<?>> listRAProfileAttributes(ConnectorDto connector, String uuid) throws ConnectorException {
         WebClient.RequestBodyUriSpec request = prepareRequest(HttpMethod.GET, connector, true);
 
         return processRequest(r -> r
                 .uri(connector.getUrl() + AUTHORITY_INSTANCE_RA_ATTRS_CONTEXT, uuid)
                 .retrieve()
-                .toEntityList(BaseAttribute.class)
+                .toEntityList(new ParameterizedTypeReference<BaseAttribute<?>>() {})
                 .block().getBody(),
                 request,
                 connector);

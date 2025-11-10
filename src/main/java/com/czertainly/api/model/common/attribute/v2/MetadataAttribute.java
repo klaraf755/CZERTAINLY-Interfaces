@@ -18,7 +18,7 @@ import java.util.List;
         description = "Info attribute contains content that is for metadata. Its content can not be edited and is not send in requests to store.",
         type = "object"
 )
-public class MetadataAttribute extends BaseAttribute<List<BaseAttributeContent>> {
+public class MetadataAttribute extends BaseAttribute<List<BaseAttributeContent<?>>> {
 
     /**
      * Content of the Attribute
@@ -26,7 +26,7 @@ public class MetadataAttribute extends BaseAttribute<List<BaseAttributeContent>>
     @Schema(
             description = "Content of the Attribute"
     )
-    private List<BaseAttributeContent> content;
+    private List<BaseAttributeContent<?>> content;
 
     /**
      * Type of the Attribute content

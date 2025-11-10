@@ -94,7 +94,7 @@ public class CustomAttributeDefinitionDetailDto extends AttributeDefinitionDto {
     @Schema(
             description = "Predefined content for the attribute if needed. The content of the Attribute must satisfy the type"
     )
-    private List<BaseAttributeContent> content;
+    private List<BaseAttributeContent<?>> content;
 
     /**
      * List of resources
@@ -160,11 +160,11 @@ public class CustomAttributeDefinitionDetailDto extends AttributeDefinitionDto {
         this.multiSelect = multiSelect;
     }
 
-    public List<BaseAttributeContent> getContent() {
+    public List<BaseAttributeContent<?>> getContent() {
         return content;
     }
 
-    public void setContent(List<BaseAttributeContent> content) {
+    public void setContent(List<BaseAttributeContent<?>> content) {
         this.content = content;
     }
 

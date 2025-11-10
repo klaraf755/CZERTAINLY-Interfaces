@@ -319,7 +319,7 @@ public interface RAProfileManagementController extends AuthProtectedController {
             @ApiResponse(responseCode = "404", description = "RA Profile not found", content = @Content(schema = @Schema(implementation = ErrorMessageDto.class)))
     })
     @GetMapping(path = "/authorities/{authorityUuid}/raProfiles/{raProfileUuid}/attributes/revoke", produces = {"application/json"})
-    List<BaseAttribute> listRevokeCertificateAttributes(@Parameter(description = "Authority Instance UUID") @PathVariable String authorityUuid,
+    List<BaseAttribute<?>> listRevokeCertificateAttributes(@Parameter(description = "Authority Instance UUID") @PathVariable String authorityUuid,
                                                         @Parameter(description = "RA Profile UUID") @PathVariable String raProfileUuid) throws ConnectorException, NotFoundException;
 
     @Operation(summary = "Get issue Certificate Attributes", operationId = "listRaProfileIssueCertificateAttributes")
@@ -328,7 +328,7 @@ public interface RAProfileManagementController extends AuthProtectedController {
             @ApiResponse(responseCode = "404", description = "RA Profile not found", content = @Content(schema = @Schema(implementation = ErrorMessageDto.class)))
     })
     @GetMapping(path = "/authorities/{authorityUuid}/raProfiles/{raProfileUuid}/attributes/issue", produces = {"application/json"})
-    List<BaseAttribute> listIssueCertificateAttributes(@Parameter(description = "Authority Instance UUID") @PathVariable String authorityUuid,
+    List<BaseAttribute<?>> listIssueCertificateAttributes(@Parameter(description = "Authority Instance UUID") @PathVariable String authorityUuid,
                                                        @Parameter(description = "RA Profile UUID") @PathVariable String raProfileUuid) throws ConnectorException, NotFoundException;
 
     /**

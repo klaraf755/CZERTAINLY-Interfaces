@@ -871,7 +871,7 @@ public interface CryptographicKeyController extends AuthProtectedController {
             path = "/tokens/{tokenInstanceUuid}/tokenProfiles/{tokenProfileUuid}/keys/{type}/attributes",
             produces = {"application/json"}
     )
-    List<BaseAttribute> listCreateKeyAttributes(
+    List<BaseAttribute<?>> listCreateKeyAttributes(
             @Parameter(description = "Token Instance UUID") @PathVariable String tokenInstanceUuid,
             @Parameter(description = "Token Profile UUID") @PathVariable String tokenProfileUuid,
             @Parameter(description = "Type of the key to be created") @PathVariable KeyRequestType type

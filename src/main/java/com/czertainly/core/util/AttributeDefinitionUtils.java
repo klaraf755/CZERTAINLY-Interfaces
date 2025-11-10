@@ -370,7 +370,7 @@ public class AttributeDefinitionUtils {
         }
     }
 
-    public static List<ValidationError> validateConstraints(BaseAttribute attribute, List<BaseAttributeContent> contents) {
+    public static List<ValidationError> validateConstraints(BaseAttribute<?> attribute, List<BaseAttributeContent<?>> contents) {
         List<BaseAttributeConstraint> constraints = null;
         AttributeContentType contentType = null;
         String label = null;
@@ -741,11 +741,11 @@ public class AttributeDefinitionUtils {
         }
     }
 
-    public static List<RequestAttributeDto> createAttributes(String name, List<BaseAttributeContent> content) {
+    public static List<RequestAttributeDto> createAttributes(String name, List<BaseAttributeContent<?>> content) {
         return createAttributes(UUID.randomUUID().toString(), name, content);
     }
 
-    public static List<RequestAttributeDto> createAttributes(String uuid, String name, List<BaseAttributeContent> content) {
+    public static List<RequestAttributeDto> createAttributes(String uuid, String name, List<BaseAttributeContent<?>> content) {
         RequestAttributeDto attribute = new RequestAttributeDto();
         attribute.setUuid(uuid);
         attribute.setName(name);
@@ -882,7 +882,7 @@ public class AttributeDefinitionUtils {
         return convertedDefinition;
     }
 
-    public static AttributeContentType deriveAttributeContentTypeFromContent(List<BaseAttributeContent> content) {
+    public static AttributeContentType deriveAttributeContentTypeFromContent(List<BaseAttributeContent<?>> content) {
         if (content == null || content.isEmpty() || content.get(0).getData() instanceof LinkedHashMap) {
             return AttributeContentType.OBJECT;
         }
@@ -894,7 +894,7 @@ public class AttributeDefinitionUtils {
         }
     }
 
-    public static List<BaseAttributeContent> convertContentItemsFromObject(Object object) {
+    public static List<BaseAttributeContent<?>> convertContentItemsFromObject(Object object) {
         return ATTRIBUTES_OBJECT_MAPPER.convertValue(object, new TypeReference<>() {
         });
     }

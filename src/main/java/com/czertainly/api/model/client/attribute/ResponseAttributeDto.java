@@ -77,7 +77,7 @@ public class ResponseAttributeDto implements Serializable {
             description = "Content of the Attribute"
     )
     @JsonSerialize(using = ResponseAttributeSerializer.class)
-    private List<BaseAttributeContent> content;
+    private List<BaseAttributeContent<?>> content;
 
     public ResponseAttributeDto() {
         super();
@@ -115,11 +115,11 @@ public class ResponseAttributeDto implements Serializable {
         this.type = type;
     }
 
-    public List<BaseAttributeContent> getContent() {
+    public List<BaseAttributeContent<?>> getContent() {
         return content;
     }
 
-    public void setContent(List<BaseAttributeContent> content) {
+    public void setContent(List<BaseAttributeContent<?>> content) {
         this.content = content;
     }
 

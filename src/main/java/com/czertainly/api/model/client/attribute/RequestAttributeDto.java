@@ -56,9 +56,9 @@ public class RequestAttributeDto implements Serializable {
             description = "Content of the Attribute",
             requiredMode = Schema.RequiredMode.REQUIRED
     )
-    private List<BaseAttributeContent> content;
+    private List<BaseAttributeContent<?>> content;
 
-    public void setContent(List<BaseAttributeContent> content) {
+    public void setContent(List<BaseAttributeContent<?>> content) {
         this.content = content;
         if (contentType == null && content != null && !content.isEmpty()) {
             contentType = AttributeContentType.fromClass(content.get(0).getClass());
