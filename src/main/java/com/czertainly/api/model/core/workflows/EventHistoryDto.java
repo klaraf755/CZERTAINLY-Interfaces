@@ -19,6 +19,9 @@ public class EventHistoryDto {
     @Schema(description = "Status of the event firing.", requiredMode = Schema.RequiredMode.REQUIRED)
     private EventStatus status;
 
+    @Schema(description = "Additional message regarding the event status", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+    private String message;
+
     @Schema(description = "Resource of the objects that triggers have been evaluated on.", requiredMode = Schema.RequiredMode.REQUIRED)
     private Resource resource;
 
