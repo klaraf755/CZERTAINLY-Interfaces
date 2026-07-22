@@ -1,5 +1,6 @@
 package com.otilm.api.model.connector.v3.certificate;
 
+import com.otilm.api.model.common.validation.ValidOid;
 import com.otilm.api.model.core.oid.ExtensionValueEncoding;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -19,6 +20,7 @@ public class RequestedExtension {
     @Schema(description = "OID of the X.509 extension (dotted-decimal, RFC 5280)",
             requiredMode = Schema.RequiredMode.REQUIRED)
     @NotBlank(message = "Extension OID is required")
+    @ValidOid(message = "Extension OID must be a dotted-decimal object identifier")
     private String oid;
 
     @Schema(description = "Whether the extension is marked critical",

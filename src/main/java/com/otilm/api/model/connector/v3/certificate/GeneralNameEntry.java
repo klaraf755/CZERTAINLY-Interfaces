@@ -2,6 +2,7 @@ package com.otilm.api.model.connector.v3.certificate;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.otilm.api.model.common.validation.NullableNotBlank;
+import com.otilm.api.model.common.validation.ValidOid;
 import com.otilm.api.model.core.certificate.GeneralNameType;
 import com.otilm.api.model.core.oid.ExtensionValueEncoding;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -32,6 +33,7 @@ public class GeneralNameEntry {
     @Schema(description = "OID of the otherName type; required when type is OTHER_NAME",
             requiredMode = Schema.RequiredMode.NOT_REQUIRED)
     @NullableNotBlank(message = "otherNameOid must not be blank when type is OTHER_NAME")
+    @ValidOid(message = "otherNameOid must be a dotted-decimal object identifier")
     private String otherNameOid;
 
     @Schema(description = "ASN.1 encoding used for the otherName value string; required when type is OTHER_NAME " +

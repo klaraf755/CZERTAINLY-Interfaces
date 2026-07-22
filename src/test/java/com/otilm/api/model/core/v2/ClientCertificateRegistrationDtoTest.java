@@ -188,4 +188,28 @@ class ClientCertificateRegistrationDtoTest {
                 .filter(v -> v.getPropertyPath().toString().equals("authorizationSecret"))
                 .collect(Collectors.toSet());
     }
+
+    @Test
+    void extensionOidFormatIsEnforced() {
+        assertTrue(extensionOidViolations("2.5.29.37").isEmpty(), "a dotted-decimal OID is valid");
+        assertTrue(extensionOidViolations("1.3.6.1.4.1.311.20.2.3").isEmpty(), "a long private-arc OID is valid");
+        assertFalse(extensionOidViolations("not-an-oid").isEmpty(), "an arbitrary string is rejected");
+        assertFalse(extensionOidViolations("2.5.29.37\ninjected=line").isEmpty(),
+                "a CR/LF payload is rejected (no log/event-message injection through the OID)");
+        assertFalse(extensionOidViolations("3.1.2").isEmpty(), "the first arc must be 0-2 (ITU-T X.660)");
+        assertFalse(extensionOidViolations("2.5.29.037").isEmpty(), "leading zeros in an arc are rejected");
+    }
+
+    private static Set<ConstraintViolation<ClientCertificateRegistrationDto>> extensionOidViolations(String oid) {
+        ClientCertificateRegistrationDto dto = new ClientCertificateRegistrationDto();
+        dto.setSubjectDn("CN=x");
+        CertificateExtension extension = new CertificateExtension();
+        extension.setOid(oid);
+        extension.setValueBase64("MAoGCCsGAQUFBwMB");
+        dto.setExtensions(List.of(extension));
+        // The @Valid on the extensions list cascades, so the violation surfaces as extensions[0].oid.
+        return VALIDATOR.validate(dto).stream()
+                .filter(v -> v.getPropertyPath().toString().equals("extensions[0].oid"))
+                .collect(Collectors.toSet());
+    }
 }

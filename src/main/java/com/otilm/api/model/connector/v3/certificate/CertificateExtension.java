@@ -1,6 +1,7 @@
 package com.otilm.api.model.connector.v3.certificate;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import com.otilm.api.model.common.validation.ValidOid;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,6 +16,7 @@ public class CertificateExtension {
             example = "2.5.29.37",
             requiredMode = Schema.RequiredMode.REQUIRED)
     @NotBlank(message = "Extension OID is required")
+    @ValidOid(message = "Extension OID must be a dotted-decimal object identifier")
     private String oid;
 
     @Schema(description = "Whether the extension is marked critical",

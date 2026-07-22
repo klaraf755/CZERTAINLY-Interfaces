@@ -1,6 +1,7 @@
 package com.otilm.api.model.common.attribute.v3.mapping;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.otilm.api.model.common.validation.ValidOid;
 import com.otilm.api.model.core.certificate.GeneralNameType;
 import com.otilm.api.model.core.oid.ExtensionValueEncoding;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -21,6 +22,7 @@ public class SanMappedField extends MappedField {
     private GeneralNameType generalNameType;
 
     @Schema(description = "OID of the otherName type; required when generalNameType is OTHER_NAME")
+    @ValidOid
     private String otherNameOid;
 
     @Schema(description = "ASN.1 encoding for the otherName value; required when generalNameType is OTHER_NAME " +
