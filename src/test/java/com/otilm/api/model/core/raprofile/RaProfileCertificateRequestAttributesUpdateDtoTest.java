@@ -72,10 +72,12 @@ class RaProfileCertificateRequestAttributesUpdateDtoTest {
 
         // when
         var json = mapper.writeValueAsString(dto);
+        RaProfileCertificateRequestAttributesUpdateDto back =
+                mapper.readValue(json, RaProfileCertificateRequestAttributesUpdateDto.class);
 
         // then
         assertTrue(json.contains("mergeMode"));
-        assertTrue(json.contains(AttributeSetMergeMode.STATIC_ONLY.getCode()));
+        assertEquals(AttributeSetMergeMode.STATIC_ONLY, back.getMergeMode());
     }
 
     @Test
